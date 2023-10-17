@@ -33,9 +33,7 @@ function LeftSide() {
     setIsModalOpen(false);
     setActiveListItem(null);
   };
-
   const iconAndTextStyles = { color: "#FFFFFF" };
-  
   return (
     <div
       style={{
@@ -105,12 +103,14 @@ function LeftSide() {
             <ListItemText primary="Notifications" style={iconAndTextStyles} />
           </ListItem>
         </Link >
-        <ListItem button onClick={() => openModal("Create")} >
+        <ListItem button onClick={() => openModal("Create")}>
           <ListItemIcon style={iconAndTextStyles}>
             <AddCircleOutlineIcon />
           </ListItemIcon>
           <ListItemText primary="Create" style={iconAndTextStyles} />
         </ListItem>
+        
+          <CreatePostModal open={isModalOpen} handleClose={closeModal} />
         {activeListItem === "Create" && (
           <CreatePostModal
             isOpen={isModalOpen}

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -28,8 +29,36 @@ import explorePic7 from '../imgs.png/explorePic7.avif';
 import explorePic8 from '../imgs.png/explorePic8.avif';
 // //my img
 import Nada from '../imgs.png/Nada.jpeg'
+import LeftSide from './LeftSide';
 
 export default function ImageAvatars() {
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
+  const [myposts, setMyPosts] = useState([]);
+  const [users,setusers]=useState([])
+  const [myinfo,setMyInfo]=useState()
+ 
+  useEffect(() => {
+    axios
+      .request({
+        method: "get",
+        url: `http://16.170.173.197/posts/${id}`,
+        data: {
+          id: id,
+        },
+        headers: {
+          Authorization:`Bearer ${token}`,
+        },
+      })
+      .then((responses) => {
+        const posts = responses.data.posts;
+        setMyPosts(posts);
+      })
+      .catch((error) => {
+        console.error("Error deleting post:", error);
+      });
+  }, []);
+
   const [value, setValue] = useState(0);
 
   const containerStyle = {
@@ -69,11 +98,13 @@ export default function ImageAvatars() {
   const images = value === 0 ? postsImages : value === 1 ? reelsImages : taggedImages;
 
   return (
+    <>
+    <LeftSide />
     <div style={containerStyle}>
       <Box style={{ backgroundColor: 'black' }}>
         <Stack direction="row" spacing={2} alignItems="center">
           <Avatar alt="My Photo" src={Nada} sx={{ width: 100, height: 100 }} />
-          <span style={{ color: 'white', fontSize: '24px' }}>Nada.Haj.Ahmad</span>
+          <span style={{ color: 'white', fontSize: '24px', fontFamily: " Poppins" }}>Nada.Haj.Ahmad</span>
           <Button style={{ backgroundColor: 'white', color: 'black', fontSize: '12px', padding: '4px 12px' }} variant="contained">
             Edit Profile
           </Button>
@@ -109,5 +140,6 @@ export default function ImageAvatars() {
 
       </Box>
     </div>
+    </>
   );
 }

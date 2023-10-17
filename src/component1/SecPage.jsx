@@ -1,9 +1,12 @@
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import LeftSide from "./LeftSide";
 
 export default function StandardImageList() {
   return (
+    <>
+    <LeftSide />
     <div style={{ overflowX: 'hidden', backgroundColor:"black" }}>
     <ImageList style={{ height:"800px",marginLeft:"500px"}} sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
       {itemData.map((item) => (
@@ -18,6 +21,7 @@ export default function StandardImageList() {
       ))}
     </ImageList>
     </div>
+    </>
   );
 }
 

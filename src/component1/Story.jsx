@@ -11,7 +11,7 @@ import shopassistant from '../imgs.png//shopassistant.png';
 const profileImages = [
   {
     image: Singer,
-    name: 'MaysDw', 
+    name: 'MaysaDw', 
   },
   {
     image: boy,
@@ -31,7 +31,7 @@ const profileImages = [
   },
   {
     image: shopassistant,
-    name: 'samaraHJ',
+    name: 'HalaNH',
   },
   
   {
